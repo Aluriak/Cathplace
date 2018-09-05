@@ -6,8 +6,8 @@ from tkinter import filedialog, simpledialog, font
 import PIL
 from PIL import Image, ImageTk
 import clyngor
-from gui_desk_dialog import DeskDialog
-from tooltip import Tooltip
+from .gui_desk_dialog import DeskDialog
+from .tooltip import Tooltip
 from functions import load_humans, load_desks, call_placement_engine, string_to_asp, name_to_color
 
 
@@ -140,7 +140,7 @@ class MainWindow(tk.Frame):
         self.frame_solutions.grid(row=2, column=1, sticky=tk.NS)
 
         frame = self.frame_program = tk.LabelFrame(self, text='Program', padx=7, pady=7)
-        self.but_quit = tk.Button(frame, text='Quit', command=self.build_placement)
+        self.but_quit = tk.Button(frame, text='Quit', command=self.quit)
         Tooltip.on(self.but_quit, 'Good bye !')
         self.but_quit.pack(fill=tk.X)
         self.frame_program.grid(row=2, column=2, sticky=tk.NS)
@@ -214,12 +214,13 @@ class MainWindow(tk.Frame):
         self.wait_window(dialog)  # window could modify self.server_config
 
 
-
-if __name__ == '__main__':
-    root = tk.Tk()
-    # Be sure to use a monospaced font
-    default_font = font.nametofont('TkFixedFont')
-    default_font.configure(size=11, weight='bold')
-    root.option_add('*Font', default_font)
-    MainWindow(root)
-    root.mainloop()
+    @staticmethod
+    def run():
+        root = tk.Tk()
+        # Be sure to use a monospaced font
+        default_font = font.nametofont('TkFixedFont')
+        default_font.configure(size=11, weight='bold')
+        root.option_add('*Font', default_font)
+        MainWindow(root)
+        root.mainloop()
+        return root
