@@ -97,6 +97,27 @@ class MainWindow(tk.Frame):
             next(self.models, ())
         self.show_next_placement()
 
+    def write_solution(self):
+        with open('solution.lp', 'w') as fd:
+            for deskpos, human in self.placement.items():
+                room, desk = self.desks[deskpos]
+                fd.write(f'place(({string_to_asp(room)},{string_to_asp(desk)}),{string_to_asp(human)}).\n')
+
+    def load_solution(self):
+        model = next(clyngor.solve('solution.lp', nb_model=1).by_predicate.careful_parsing.int_not_parsed, None)
+        if model is None:
+            print('ERROR: no solution written in solution.lp')
+            return
+        reverse_desks = self.reverse_desks
+        for args in model.get('place', ()):
+            if len(args) == 2:
+                (_, (room, desk)), human = args
+                deskpos = reverse_desks[room.strip('"'), desk.strip('"')]
+                self.placement[deskpos] = human.strip('"')
+            else:
+                print(f'ERROR: invalid atom place/{len(args)} with arguments "{args}" not handled.')
+        self.paint()
+
 
     def __build_widgets(self):
         raw_image = Image.open('plan-patio.png')
@@ -125,7 +146,6 @@ class MainWindow(tk.Frame):
         self.but_export_desk.pack(fill=tk.X)
         self.frame_desk.grid(row=2, column=0, sticky=tk.NS)
 
-
         frame = self.frame_solutions = tk.LabelFrame(self, text='Solutions', padx=7, pady=7)
         self.but_build_solutions = tk.Button(frame, text='Build solutions', command=self.build_placement)
         Tooltip.on(self.but_build_solutions, 'compute possible (optimal) solutions, show the first one')
@@ -136,7 +156,19 @@ class MainWindow(tk.Frame):
         self.but_jump_solution = tk.Button(frame, text='Pass solutions', command=self.jump_placements)
         Tooltip.on(self.but_jump_solution, f'Ignore {JUMP_QUANTITY} solutions, show the next one, if any')
         self.but_jump_solution.pack(fill=tk.X)
+        self.but_write_solution = tk.Button(frame, text='Write solution', command=self.write_solution)
+        Tooltip.on(self.but_write_solution, 'Write current solution in solution.lp')
+        self.but_write_solution.pack(fill=tk.X)
+        self.but_read_solution = tk.Button(frame, text='Read solution', command=self.load_solution)
+        Tooltip.on(self.but_read_solution, 'Read solution in solution.lp, and show it')
+        self.but_read_solution.pack(fill=tk.X)
         self.frame_solutions.grid(row=2, column=1, sticky=tk.NS)
+
+        frame = self.frame_program = tk.LabelFrame(self, text='Program', padx=7, pady=7)
+        self.but_quit = tk.Button(frame, text='Quit', command=self.build_placement)
+        Tooltip.on(self.but_quit, 'Good bye !')
+        self.but_quit.pack(fill=tk.X)
+        self.frame_program.grid(row=2, column=2, sticky=tk.NS)
 
 
         self.pack(fill=tk.BOTH, expand=1)
