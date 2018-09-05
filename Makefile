@@ -1,5 +1,8 @@
 
 
+gui:
+	python gui.py
+
 all:
 	clingo 0 humans.lp offices.lp engine.lp -W no-atom-undefined
 dbg:
