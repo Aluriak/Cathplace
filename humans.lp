@@ -30,7 +30,7 @@ avoid_hierarchy.  % Delete to let bosses be in the same.
 % If set, the following option will optimize, depending of its argument:
 %   - empty: the number of empty rooms
 %   - occupied: the number of occupied rooms
-maximize_desk_state(occupied).
+maximize_desk_state(empty).
 
 % Output options.
 show_empty_rooms.  % Delete to avoid empty_room/1 in output.
