@@ -43,3 +43,4 @@ properties may be *sunny*, *south-oriented* or *noisy*. For instance, `property(
 ## Future work
 - implement the team mixing optimization
 - #project for non-differenciated desks
+- *need/2* handling in DSL
