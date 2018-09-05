@@ -28,7 +28,7 @@ place_alone(H):- place_alone(H,_).
 % Room related expansions.
 def_room((R,N),1):- room(R,NumberOfDesk) ; N=1..NumberOfDesk.
 def_room((R,N),1):- room(R,NumberOfDesk,_) ; N=1..NumberOfDesk.
-def_room((R,u),1):- room(R) ; not room(R,_).
+def_room((R,""),1):- room(R) ; not room(R,_).
 def_room(R):- def_room(R,_).
 % Desk expansion.
 def_room((R,D),1):- desk(R,D).
@@ -36,7 +36,7 @@ property((R,D),P):- desk(R,D,P).
 % Properties expansion.
 property((R,N),P):- property(R,P) ; room(R,NumberOfDesk) ; N=1..NumberOfDesk.
 property((R,N),P):- room(R,NumberOfDesk,P) ; N=1..NumberOfDesk.
-property((R,u),P):- property(R,P) ; room(R) ; not room(R,_).
+property((R,""),P):- property(R,P) ; room(R) ; not room(R,_).
 property((R,D),P):- property(R,D,P).
 
 
