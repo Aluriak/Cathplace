@@ -5,6 +5,18 @@ Run with:
 
     clingo 0 humans.lp offices.lp engine.lp -W no-atom-undefined
 
+See [Makefile](Makefile) for further usage information.
+
+
+## installation
+Clone the repository or copy the source code.
+Use the Makefile or copy-paste commands you found here.
+
+You will need python 3.6+, and some tierce-party packages installable with `pip install -r requirements.txt`.
+See the [requirements.txt](requirements.txt) for exact dependencies.
+
+You will also need the [clingo](https://github.com/potassco/clingo/releases/) solver to be installed in your $PATH.
+
 
 ## DSL
 In files `humans.lp` and `offices.lp`, the final user can specify
@@ -38,6 +50,19 @@ for instance with `room(a100,2)` indicating that room a100 can contains two huma
 Rooms and/or desks can also hold arbitrary properties. Some typical
 properties may be *sunny*, *south-oriented* or *noisy*. For instance, `property(a100,sunny)` defines room a100 as *sunny*, making it unsuitable for Eugène.
 
+Note that the [GUI](#GUIs) may help to build these data automatically.
+
+
+## GUIs
+Two GUI currently coexist, offering the same features : one in tkinter, one in Qt,
+than can be launched using either `python -m tkgui` or `python -m qtgui`.
+
+With the GUI, it's quite simple to:
+- design the search space about desks and rooms, by adding desks on the map, and indicating where places for human are.
+- visualize the output of Cathplace program
+
+For the tkinter GUI, you need Tcl/Tk, that is often shipped with python. For the Qt GUI, you need PyQt5.
+See [installation](#installation).
 
 
 ## Future work
