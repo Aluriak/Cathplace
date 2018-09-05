@@ -1,11 +1,12 @@
 
 
-qgui:
-	python qtgui.py
-gui:
-	python gui.py
+gui: qtgui
+qtgui:
+	python -m qtgui
+tkgui:
+	python -m tkgui
 
-all:
+solve:
 	clingo 0 humans.lp offices.lp engine.lp -W no-atom-undefined
 dbg:
 	clingo 0 humans.lp offices.lp engine.lp
