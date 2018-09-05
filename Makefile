@@ -1,5 +1,7 @@
 
 
+qgui:
+	python qtgui.py
 gui:
 	python gui.py
 
