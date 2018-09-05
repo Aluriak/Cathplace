@@ -1,4 +1,7 @@
+"""GUI made in tkinter, allowing one to visualize solutions of
+Cathplace program, and to design the desks/room space.
 
+"""
 
 import tkinter as tk
 from enum import Enum

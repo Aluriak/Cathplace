@@ -1,4 +1,7 @@
-"""GUI reboot, using Qt"""
+"""GUI made in Qt5, allowing one to visualize solutions of
+Cathplace program, and to design the desks/room space.
+
+"""
 
 import sys
 import threading
