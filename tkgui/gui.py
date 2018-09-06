@@ -98,7 +98,7 @@ class MainWindow(tk.Frame):
 
 
     def __build_widgets(self):
-        raw_image = Image.open('plan-patio.png')
+        raw_image = Image.open('data/plan.png')
         raw_image = raw_image.resize(WINDOW_SIZE, PIL.Image.ANTIALIAS)
         self.image = ImageTk.PhotoImage(raw_image)
         self.image.rawdata = raw_image

@@ -21,6 +21,7 @@ from qtgui.qtgui_desk import DeskDialog
 DEFAULT_WM_TITLE = 'Cathplace'
 WINDOW_SIZE = WINDOW_WIDTH, WINDOW_HEIGHT = WINDOW_WIDTH+20, WINDOW_WIDTH+30
 JUMP_QUANTITY = 20
+DATA_PLAN = 'data/plan.png'
 
 
 class Application(qw.QMainWindow):
@@ -101,7 +102,7 @@ class Application(qw.QMainWindow):
         menu_pers.addAction("Export &Desks", self.export_desks)
 
     def __create_widgets(self):
-        self.wid_canvas = MapWidget(self, 'plan-patio.png', self.desks, self.placement, self.humans)
+        self.wid_canvas = MapWidget(self, DATA_PLAN, self.desks, self.placement, self.humans)
         # self.wid_visual = gui.visual.VisualWidget(self)
         # self.wid_program = gui.program.ProgramWidget(self, clingo_bin_path=self.__clingo_bin_path)
 

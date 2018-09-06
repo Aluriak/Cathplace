@@ -5,7 +5,7 @@ import clyngor
 
 def load_humans() -> (str, str):
     "Yield pairs of (name, team)"
-    for model in clyngor.solve('humans.lp').by_predicate.careful_parsing.int_not_parsed:
+    for model in clyngor.solve('data/humans.lp').by_predicate.careful_parsing.int_not_parsed:
         for args in model['human']:
             if len(args) == 1:
                 yield args[0], None
@@ -16,7 +16,7 @@ def load_humans() -> (str, str):
 
 def load_desks() -> [(int, int), (str, str)]:
     "Yield (room name, desk name, position x, position y) found in export-offices.lp"
-    for model in clyngor.solve('export-offices.lp').by_predicate.careful_parsing.int_not_parsed:
+    for model in clyngor.solve('data/offices.lp').by_predicate.careful_parsing.int_not_parsed:
         for args in model.get('desk_px', ()):
             if len(args) == 4:
                 room, name, x, y = args
@@ -25,7 +25,7 @@ def load_desks() -> [(int, int), (str, str)]:
                 print(f'ERROR: unhandled desk "{args}"')
 
 def call_placement_engine():
-    models = clyngor.solve(('humans.lp', 'offices.lp', 'engine.lp'), options='--opt-mode=optN')
+    models = clyngor.solve(('data/humans.lp', 'data/offices.lp', 'engine.lp'), options='--opt-mode=optN')
     for model in models.by_predicate.careful_parsing.int_not_parsed:
         yield model['place']
 

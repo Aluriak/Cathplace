@@ -17,9 +17,15 @@ See the [requirements.txt](requirements.txt) for exact dependencies.
 
 You will also need the [clingo](https://github.com/potassco/clingo/releases/) solver to be installed in your $PATH.
 
+Finally, **create a data folder** (or a symlink to existing data folder somewhere else) and populate it with files:
+
+- `map.png`: a map of the office/lab, something like [this one](http://oi45.tinypic.com/fk5rbs.jpg) for instance
+- `humans.lp`: as described [later](#humans)
+- `offices.lp`: as described [later](#offices)
+
 
 ## DSL
-In files `humans.lp` and `offices.lp`, the final user can specify
+In files `data/humans.lp` and `data/offices.lp`, the final user can specify
 its problem using the DSL.
 
 He should not modify `engine.lp`, that contains the expension of the DSL, and the problem encoding.
