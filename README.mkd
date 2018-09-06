@@ -23,6 +23,8 @@ Finally, **create a data folder** (or a symlink to existing data folder somewher
 - `humans.lp`: as described [later](#humans)
 - `offices.lp`: as described [later](#offices)
 
+The data folder does not exists in this repo and is marked by `.gitignore`. You can therefore safely build your own with your private data.
+
 
 ## DSL
 In files `data/humans.lp` and `data/offices.lp`, the final user can specify
