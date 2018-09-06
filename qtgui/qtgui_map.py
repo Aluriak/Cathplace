@@ -47,13 +47,14 @@ class MapWidget(qw.QWidget):
             for x, y in tuple(self.desks):
                 if (posx - x) ** 2 + (posy - y) ** 2 < 60:
                     del self.desks[x, y]
-                    return
+                    break
         elif action_state is ActionState.EditDesk:
             for x, y in tuple(self.desks):
                 if (posx - x) ** 2 + (posy - y) ** 2 < 60:
                     self.parent().build_desk_metadata((x, y), *self.desks[x, y])
         else:
             assert action_state is ActionState.Nothing
+        self.update()
 
     def paintEvent(self, event):
         draw = self.canvas = qt.QPainter(self)
@@ -71,11 +72,6 @@ class MapWidget(qw.QWidget):
                 draw.setPen(color)
                 self.canvas.drawText(x, y+10, occupant)
         draw.end()
-
-    def drawText(self, event, draw):
-        draw.setPen(qt.QColor(168, 34, 3))
-        draw.setFont(qt.QFont('Mono', 11))
-        draw.drawText(event.rect(), qc.Qt.AlignCenter, 'coucou')
 
 
 if __name__ == '__main__':
