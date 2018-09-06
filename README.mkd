@@ -3,7 +3,7 @@ Automatic assignation of places using [ASP/clingo](https://github.com/potassco/c
 
 Run with:
 
-    clingo 0 humans.lp offices.lp engine.lp -W no-atom-undefined
+    clingo 0 data-examples/humans.lp data-examples/offices.lp engine.lp -W no-atom-undefined
 
 See [Makefile](Makefile) for further usage information.
 
