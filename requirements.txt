@@ -1,3 +1,4 @@
-clyngor==0.3.7
 Pillow==5.2.0
+PyQt5==5.11.2
+clyngor==0.3.7
 pytest==3.7.4
