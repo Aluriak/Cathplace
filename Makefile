@@ -6,6 +6,8 @@ qtgui:
 tkgui:
 	python -m tkgui
 
+.PHONY: qtgui tkgui
+
 solve:
 	clingo 0 data/humans.lp data/offices.lp engine.lp -W no-atom-undefined
 dbg:
