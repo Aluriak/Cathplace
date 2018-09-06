@@ -2,3 +2,4 @@ Session.vim
 __pycache__/
 solution.lp
 venv/
+data
